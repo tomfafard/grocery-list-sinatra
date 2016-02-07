@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Grocery List</title>
+    <link rel="stylesheet" href="styles.css"></link>
+  </head>
+
+  <body>
+    <h2>List of Groceries:</h2>
+
+    <ul>
+      <% @current_groceries.groceries.each do |item| %>
+        <% if item[:quantity] != "" %>
+          <li><%= item[:name] + " - " + item[:quantity] %></li>
+        <% else %>
+          <li><%= item[:name] %></li>
+        <% end %>
+      <% end %>
+    </ul>
+
+    <form action="/submit" method="post">
+      <label for="grocery_name">Name</label>
+      <input type="text" id="grocery_name" name="grocery_name" required>
+        </br></br>
+      <% if @quantity != "" %>
+      <label for="grocery_quantity">Quantity</label>
+      <input type="text" id="grocery_quantity" name="grocery_quantity" placeholder="<%=@user_quantity_input%>">
+      <% else %>
+      <label for="grocery_quantity">Quantity</label>
+      <input type="text" id="grocery_quantity" name="grocery_quantity">
+      <% end %>
+
+      <input type="submit" value="Add">
+    </form>
+
+  </body>
+</html>
